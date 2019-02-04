@@ -251,6 +251,33 @@ namespace ContosoUniversity.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult RegisterInstructor()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult RegisterInstructor(Instructor instructor)
+        {
+            if (db.Instructors.Any(s => s.UserName == instructor.UserName))
+            {
+                ViewBag.ErrorMessage = "That user name is already taken. Try another !";
+                return View("RegisterStudent", instructor);
+            }
+
+            if (ModelState.IsValid)
+            {
+                db.Instructors.Add(instructor);
+                db.SaveChanges();
+                ModelState.Clear();
+                ViewBag.Message = "Registration successful !";
+            }
+
+            return View();
+
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -37,8 +37,12 @@
                     <li>@Html.ActionLink("Instructors", "Index", "Instructor")</li>
                     <li>@Html.ActionLink("Departments", "Index", "Department")</li>
                 </ul>
+
+                <ul class="nav navbar-nav pull-right">
+                    <li>@Html.ActionLink("Create Account", "Register", "Login")</li>
+                    <li>@Html.ActionLink("Sign in", "SignIn", "Login")</li>
+                </ul>
             </div>
-        </div>
     </div>
     <div class="container body-content">
         @RenderBody()
