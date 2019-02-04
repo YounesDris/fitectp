@@ -263,7 +263,7 @@ namespace ContosoUniversity.Controllers
             if (db.Instructors.Any(s => s.UserName == instructor.UserName))
             {
                 ViewBag.ErrorMessage = "That user name is already taken. Try another !";
-                return View("RegisterStudent", instructor);
+                return View("RegisterInstructor", instructor);
             }
 
             if (ModelState.IsValid)
