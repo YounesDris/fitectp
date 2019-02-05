@@ -20,12 +20,14 @@ namespace ContosoUniversity.Models
 
         [Required(ErrorMessage = "This field is required")]
         [StringLength(50, ErrorMessage = "User name cannot be longer than 50 characters.")]
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
         
         [Required(ErrorMessage = "This field is required")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        [NotMapped]
         [Compare("Password", ErrorMessage = "Please confirm your password")]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm your password")]

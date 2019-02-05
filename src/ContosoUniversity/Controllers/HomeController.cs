@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ContosoUniversity.DAL;
+using ContosoUniversity.Models;
 using ContosoUniversity.ViewModels;
 
 
@@ -15,6 +16,10 @@ namespace ContosoUniversity.Controllers
 
         public ActionResult Index()
         {
+            /*if (Session["UserName"] != null && Session["UserName"] is Student)
+            {
+               
+            }*/
             return View();
         }
 

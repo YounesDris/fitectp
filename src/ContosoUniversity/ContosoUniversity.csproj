@@ -156,9 +156,9 @@
     <Compile Include="Migrations\201411022351064_Inheritance.Designer.cs">
       <DependentUpon>201411022351064_Inheritance.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902040928458_UpdatePerson.cs" />
-    <Compile Include="Migrations\201902040928458_UpdatePerson.Designer.cs">
-      <DependentUpon>201902040928458_UpdatePerson.cs</DependentUpon>
+    <Compile Include="Migrations\201902041503125_Update_Person.cs" />
+    <Compile Include="Migrations\201902041503125_Update_Person.Designer.cs">
+      <DependentUpon>201902041503125_Update_Person.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
@@ -238,10 +238,12 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Student\RegisterStudent.cshtml" />
     <Content Include="Views\Instructor\RegisterInstructor.cshtml" />
+    <Content Include="Views\Login\LoginStudent.cshtml" />
+    <Content Include="Views\Login\LoginInstructor.cshtml" />
+    <Content Include="Views\Login\SessionUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -266,8 +268,8 @@
     <EmbeddedResource Include="Migrations\201411022351064_Inheritance.resx">
       <DependentUpon>201411022351064_Inheritance.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902040928458_UpdatePerson.resx">
-      <DependentUpon>201902040928458_UpdatePerson.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902041503125_Update_Person.resx">
+      <DependentUpon>201902041503125_Update_Person.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
