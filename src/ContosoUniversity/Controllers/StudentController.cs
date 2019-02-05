@@ -2,6 +2,7 @@
 using ContosoUniversity.Models;
 using PagedList;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -194,6 +195,32 @@ namespace ContosoUniversity.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public ActionResult RegisterStudent()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult RegisterStudent(Student student)
+        {
+            if (db.Students.Any(s => s.UserName == student.UserName))
+            {
+                ViewBag.ErrorMessage = "That user name is already taken. Try another !";
+                return View("RegisterStudent", student);
+            }
+
+            if (ModelState.IsValid)
+            {
+                db.Students.Add(student);
+                db.SaveChanges();
+                ModelState.Clear();
+                ViewBag.Message = "Registration successful !";
+            }
+
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
