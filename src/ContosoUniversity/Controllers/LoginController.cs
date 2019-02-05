@@ -28,7 +28,7 @@ namespace ContosoUniversity.Controllers
                if (user != null)
                 {
                     Session["ID"] = user.ID;
-                    return RedirectToAction("SessionUser", "Login", new { id = user.ID });
+                    return RedirectToAction("SessionStudent", "Login", new { id = user.ID });
                 }
 
                 if (user == null)
@@ -39,7 +39,7 @@ namespace ContosoUniversity.Controllers
                     if (user != null)
                     {
                         Session["ID"] = user.ID;
-                        return RedirectToAction("SessionUser", "Login", new { id = user.ID });
+                        return RedirectToAction("SessionInstructor", "Login", new { id = user.ID });
                      
                     }
 
@@ -58,9 +58,9 @@ namespace ContosoUniversity.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult SessionUser(int id)
+        public ActionResult SessionStudent(int id)
         {
-            Person user = db.People.FirstOrDefault(p => p.ID == id);
+            Student user = db.Students.FirstOrDefault(p => p.ID == id);
             return View(user);
         }
         
