@@ -1,10 +1,10 @@
-﻿@model ContosoUniversity.Models.Instructor
+﻿@model ContosoUniversity.Models.Person
 
 @{
-    ViewBag.Title = "LoginInstructor";
+    ViewBag.Title = "Login";
 }
 
-<h2>LoginInstructor</h2>
+<h2>Login</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Instructor</h4>
+        <h4>Person</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -34,15 +34,18 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Sign in" class="btn btn-default" />
+                <input type="submit" value="Sign In" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
+    <hr />
 
-<div>
-    @Html.ActionLink("Create Account", "RegisterInstructor", "Instructor")
-</div>
+    <div>
+        @Html.ActionLink("Create student account", "RegisterStudent", "Student")
+        <hr/>
+        @Html.ActionLink("Create instructor account", "RegisterInstructor", "Instructor")
+    </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

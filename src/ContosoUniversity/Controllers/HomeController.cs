@@ -13,13 +13,9 @@ namespace ContosoUniversity.Controllers
     public class HomeController : Controller
     {
         private SchoolContext db = new SchoolContext();
-
+        
         public ActionResult Index()
         {
-            /*if (Session["UserName"] != null && Session["UserName"] is Student)
-            {
-               
-            }*/
             return View();
         }
 

@@ -37,18 +37,11 @@
                     <li>@Html.ActionLink("Courses", "Index", "Course")</li>
                     <li>@Html.ActionLink("Instructors", "Index", "Instructor")</li>
                     <li>@Html.ActionLink("Departments", "Index", "Department")</li>
+                    <li>@Html.ActionLink("Sign In", "Login", "Login")
                 </ul>
 
-                <div class="dropdown pull-right">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-lock"></i> Sign In
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li class="dropdown-item">@Html.ActionLink("Student", "LoginStudent", "Login")</li>
-                        <li class="dropdown-item">@Html.ActionLink("Instructor", "LoginInstructor", "Login")</li>
-                    </ul>
-                </div>
-
+                <button type="button" class="btn btn-default pull-right" id="SignIn"> <i class="fas fa-lock"> </i> @Html.ActionLink("Sign In", "Login", "Login") </button>
+                
                 <div class="dropdown pull-right">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-user"></i> Create Account
@@ -59,7 +52,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+            </div>
     </div>
     <div class="container body-content">
         @RenderBody()

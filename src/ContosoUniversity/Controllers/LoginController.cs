@@ -1,5 +1,6 @@
 ﻿using ContosoUniversity.DAL;
 using ContosoUniversity.Models;
+using ContosoUniversity.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,62 +13,43 @@ namespace ContosoUniversity.Controllers
     {
         private SchoolContext db = new SchoolContext();
 
-        public ActionResult LoginStudent()
-        {
-            return View();
-        }
-        
-        [HttpPost]
-        public ActionResult LoginStudent(Student student)
-        {
-            Student user = db.Students.SingleOrDefault(u => u.UserName == student.UserName && u.Password == student.Password);
-
-            if (user != null)
-            {
-                // Storing UserName in a Session
-                Session["UserName"] = user.UserName;
-
-                // Storing ID in a Session
-                Session["ID"] = user.ID;
-
-
-                // Redirect to the home page 
-                return RedirectToAction("SessionUser", "Login", new { id = user.ID });
-            }
-            else
-            {
-                ModelState.AddModelError("", "Login or Password is incorrect");
-            }
-
-            return View();
-        }
-
-        public ActionResult LoginInstructor()
+        public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult LoginInstructor(Instructor instructor)
+        public ActionResult Login(UserAccount person)
         {
-            Instructor user = db.Instructors.SingleOrDefault(u => u.UserName == instructor.UserName && u.Password == instructor.Password);
-
-            if (user != null)
+            if(ModelState.IsValid)
             {
-                // Storing UserName in a Session
-                Session["UserName"] = user.UserName;
+                Person user = db.Students.SingleOrDefault(u => u.UserName == person.UserName && u.Password == person.Password);
 
-                // Storing ID in a Session
-                Session["ID"] = user.ID;
+               if (user != null)
+                {
+                    Session["ID"] = user.ID;
+                    return RedirectToAction("SessionUser", "Login", new { id = user.ID });
+                }
 
-                // Redirect to the home page 
-                return RedirectToAction("SessionUser", "Login", new { id = user.ID });
+                if (user == null)
+                {
+                    // It's not a student or the authentication is wrong
+                    user = db.Instructors.SingleOrDefault(u => u.UserName == person.UserName && u.Password == person.Password);
+
+                    if (user != null)
+                    {
+                        Session["ID"] = user.ID;
+                        return RedirectToAction("SessionUser", "Login", new { id = user.ID });
+                     
+                    }
+
+                    if (user == null)
+                    {
+                        ModelState.AddModelError("", "Login or Password is incorrect");
+                    }
+                }
             }
-            else
-            {
-                ModelState.AddModelError("", "Login or Password is incorrect");
-            }
-            return View();
+            return View();    
         }
 
         public ActionResult Logout()
