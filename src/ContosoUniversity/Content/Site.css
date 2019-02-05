@@ -25,12 +25,15 @@ textarea {
 
 #dropdownMenuButton {
     margin-top: 8px;
-
     margin-left: 8px;
 }
 
 #SignIn {
     margin-top: 8px;
-    margin-left: 8px;
-    background-color:rgb(221,221,221);
+    margin-left: 8px;  
+}
+
+#SignIn a {
+    color: black;
+    text-decoration:none;
 }
