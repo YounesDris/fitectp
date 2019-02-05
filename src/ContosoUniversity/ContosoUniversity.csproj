@@ -161,6 +161,10 @@
     <Compile Include="Migrations\201902041503125_Update_Person.Designer.cs">
       <DependentUpon>201902041503125_Update_Person.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902051608407_PersonUpdate.cs" />
+    <Compile Include="Migrations\201902051608407_PersonUpdate.Designer.cs">
+      <DependentUpon>201902051608407_PersonUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Department.cs" />
@@ -242,10 +246,10 @@
     <Content Include="Views\Instructor\RegisterInstructor.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\SessionStudent.cshtml" />
+    <Content Include="Views\Subscribe\SubscribeCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Subscribe\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -272,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902041503125_Update_Person.resx">
       <DependentUpon>201902041503125_Update_Person.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902051608407_PersonUpdate.resx">
+      <DependentUpon>201902051608407_PersonUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
