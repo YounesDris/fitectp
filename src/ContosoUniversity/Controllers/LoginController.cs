@@ -63,6 +63,12 @@ namespace ContosoUniversity.Controllers
             Student user = db.Students.FirstOrDefault(p => p.ID == id);
             return View(user);
         }
-        
+
+        public ActionResult SessionInstructor(int id)
+        {
+            Instructor user = db.Instructors.FirstOrDefault(p => p.ID == id);
+            return View(user);
+        }
+
     } 
 }
