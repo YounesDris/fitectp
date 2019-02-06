@@ -7,11 +7,12 @@
 <h2>RegisterInstructor</h2>
 
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
+@using (Html.BeginForm())
     
-<div class="form-horizontal">
+{
+                    @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
     <h4>Instructor</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })

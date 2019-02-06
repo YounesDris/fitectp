@@ -5,8 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Infrastructure;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 namespace ContosoUniversity.Controllers
@@ -74,7 +76,8 @@ namespace ContosoUniversity.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
+            //Student student = db.Students.Find(id);
+            Student student = db.Students.Include("FilePaths").SingleOrDefault(i => i.ID == id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -202,7 +205,7 @@ namespace ContosoUniversity.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegisterStudent(Student student)
+        public ActionResult RegisterStudent(Student student, HttpPostedFileBase upload)
         {
             if (db.Students.Any(s => s.UserName == student.UserName))
             {
@@ -212,6 +215,20 @@ namespace ContosoUniversity.Controllers
 
             if (ModelState.IsValid)
             {
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    var photo = new FilePath
+                    {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = FileType.Photo
+                    };
+                    student.FilePaths = new List<FilePath>();
+                    student.FilePaths.Add(photo);
+
+                    string path = Path.Combine(Server.MapPath("~/Images"), student.UserName + photo.FileName);
+                    upload.SaveAs(path);
+                }
+
                 db.Students.Add(student);
                 db.SaveChanges();
                 ModelState.Clear();
