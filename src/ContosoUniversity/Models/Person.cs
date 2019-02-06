@@ -23,7 +23,7 @@ namespace ContosoUniversity.Models
         [StringLength(50, ErrorMessage = "User name cannot be longer than 50 characters.")]
         [Display(Name = "User Name")]
         public string UserName { get; set; }
-        
+
         [Required(ErrorMessage = "This field is required")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
@@ -33,7 +33,7 @@ namespace ContosoUniversity.Models
         [DataType(DataType.Password)]
         [Display(Name = "Confirm your password")]
         public string ConfirmPassword { get; set; }
-        
+
         [Display(Name = "Full Name")]
         public string FullName
         {

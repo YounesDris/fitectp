@@ -157,13 +157,13 @@
     <Compile Include="Migrations\201411022351064_Inheritance.Designer.cs">
       <DependentUpon>201411022351064_Inheritance.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902041503125_Update_Person.cs" />
-    <Compile Include="Migrations\201902041503125_Update_Person.Designer.cs">
-      <DependentUpon>201902041503125_Update_Person.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201902051652205_FilePaths.cs" />
     <Compile Include="Migrations\201902051652205_FilePaths.Designer.cs">
       <DependentUpon>201902051652205_FilePaths.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902061043121_Person.cs" />
+    <Compile Include="Migrations\201902061043121_Person.Designer.cs">
+      <DependentUpon>201902061043121_Person.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
@@ -247,11 +247,12 @@
     <Content Include="Views\Student\RegisterStudent.cshtml" />
     <Content Include="Views\Instructor\RegisterInstructor.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\SessionStudent.cshtml" />
+    <Content Include="Views\Subscribe\SubscribeCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
-    <Folder Include="Views\Subscribe\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -276,11 +277,11 @@
     <EmbeddedResource Include="Migrations\201411022351064_Inheritance.resx">
       <DependentUpon>201411022351064_Inheritance.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902041503125_Update_Person.resx">
-      <DependentUpon>201902041503125_Update_Person.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902051652205_FilePaths.resx">
       <DependentUpon>201902051652205_FilePaths.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902061043121_Person.resx">
+      <DependentUpon>201902061043121_Person.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
