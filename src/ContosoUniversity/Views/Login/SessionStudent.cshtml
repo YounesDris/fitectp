@@ -6,6 +6,7 @@
 
 <h2>Welcome @Html.DisplayFor(model => model.FirstMidName) </h2>
 
+
 <div>
     <h4>Profile Details</h4>
     <hr />
@@ -46,7 +47,13 @@
                         </td>
                     </tr>
                 }
+
             </table>
+        </dd>
+        
+ 
+        <dd>
+            <p id="infos"></p>
         </dd>
     </dl>
 </div>
@@ -60,3 +67,4 @@
 <p>
     @Html.ActionLink("Logout", "Logout", "Login")
 </p>
+
