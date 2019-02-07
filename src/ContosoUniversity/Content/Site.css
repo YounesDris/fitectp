@@ -37,3 +37,12 @@ textarea {
     color: black;
     text-decoration:none;
 }
+
+.jumbotron {
+    text-align: center;
+}
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+}

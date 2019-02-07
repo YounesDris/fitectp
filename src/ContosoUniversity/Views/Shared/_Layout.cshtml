@@ -40,7 +40,7 @@
                 </ul>
 
                 <button type="button" class="btn btn-light pull-right" id="SignIn"> <i class="fas fa-lock"> </i> @Html.ActionLink("Sign In", "Login", "Login") </button>
-                
+
                 <div class="dropdown pull-right">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-user"></i> Create Account
@@ -51,7 +51,7 @@
                     </ul>
                 </div>
             </div>
-            </div>
+        </div>
     </div>
     <div class="container body-content">
         @RenderBody()
@@ -64,6 +64,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    @RenderSection("Script", required: false)
 </body>
 </html>
 
