@@ -33,7 +33,22 @@ namespace ContosoUniversity.Controllers.api
                 return NotFound();
             }
 
-            return Ok(student);
+            Dictionary<string, object> listInfos = new Dictionary<string, object>();
+
+            List<string> ListeID = new List<string>();
+
+            listInfos.Add("id :", student.ID);
+            listInfos.Add("lastname :", student.LastName);
+            listInfos.Add("firstname :", student.FirstMidName);
+            listInfos.Add("enrollment date :", student.EnrollmentDate.ToString());
+            listInfos.Add("enrollments :", student.Enrollments);
+
+            foreach (var item in student.Enrollments)
+            {
+                ListeID.Add("CourseId :" + item.CourseID);
+            }
+
+            return Ok(listInfos);
         }
 
         protected override void Dispose(bool disposing)
