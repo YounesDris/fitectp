@@ -17,7 +17,6 @@ namespace ContosoUniversity.Controllers.api
     {
         private SchoolContext db = new SchoolContext();
 
-        // GET: api/Students
         public IQueryable<Student> GetPeople()
         {
             return db.Students;
@@ -41,15 +40,16 @@ namespace ContosoUniversity.Controllers.api
             listInfos.Add("lastname :", student.LastName);
             listInfos.Add("firstname :", student.FirstMidName);
             listInfos.Add("enrollment date :", student.EnrollmentDate.ToString());
-            listInfos.Add("enrollments :", student.Enrollments);
+            listInfos.Add("enrollments :", ListeID);
 
-            foreach (var item in student.Enrollments)
+            foreach(var item in student.Enrollments)
             {
                 ListeID.Add("CourseId :" + item.CourseID);
             }
 
             return Ok(listInfos);
         }
+
 
         protected override void Dispose(bool disposing)
         {

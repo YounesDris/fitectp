@@ -17,12 +17,6 @@ namespace ContosoUniversity.Controllers.api
     {
         private SchoolContext db = new SchoolContext();
 
-        // GET: api/Instructors
-        public IQueryable<Instructor> GetPeople()
-        {
-            return db.Instructors;
-        }
-
         // GET: api/Instructors/5
         [ResponseType(typeof(Instructor))]
         public IHttpActionResult GetInstructor(int id)
@@ -35,20 +29,14 @@ namespace ContosoUniversity.Controllers.api
 
             Dictionary<string, object> listInfos = new Dictionary<string, object>();
 
-            List<string> ListeID = new List<string>();
+            //List<string> ListeID = new List<string>();
 
             listInfos.Add("id :", instructor.ID);
-            listInfos.Add("Schedule :", instructor.Courses);
 
-
-            foreach (var item in instructor.Courses)
-            {
-                ListeID.Add("CourseId :" + item.CourseID);
-                ListeID.Add("StartDate :" + item.Department.StartDate);
-            }
 
             return Ok(listInfos);
         }
+
 
         protected override void Dispose(bool disposing)
         {
