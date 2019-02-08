@@ -37,14 +37,14 @@ namespace ContosoUniversity.Controllers
 
 
         [HttpPost]
-        public ActionResult SubscribeCourse(int courseID, Grade grade)
+        public ActionResult SubscribeCourse(int courseID)
         {
-            if (TempData["studentID"] == null)
+            if (Session["ID"] == null)
             {
                 return View();
             }
 
-            int id = int.Parse(TempData["studentID"].ToString());
+            int id = int.Parse(Session["ID"].ToString());
 
             db.Enrollments.Add(new Enrollment { StudentID = id, CourseID = courseID });
             db.SaveChanges();
