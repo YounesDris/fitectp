@@ -5,9 +5,6 @@
     ViewBag.Title = "Details";
 }
 
-<p id="logout">
-    @Html.ActionLink("Logout", "Logout", "Login")
-</p>
 
 @if (Model.FilePaths.Any(f => f.FileType == FileType.Photo))
 {

@@ -22,7 +22,6 @@ namespace ContosoUniversity.Controllers.api
             return db.Students;
         }
 
-        // GET: api/Students/5
         [ResponseType(typeof(Student))]
         public IHttpActionResult GetStudent(int id)
         {
@@ -36,17 +35,18 @@ namespace ContosoUniversity.Controllers.api
 
             List<string> ListeID = new List<string>();
 
-            listInfos.Add("id :", student.ID);
-            listInfos.Add("lastname :", student.LastName);
-            listInfos.Add("firstname :", student.FirstMidName);
-            listInfos.Add("enrollment date :", student.EnrollmentDate.ToString());
-            listInfos.Add("enrollments :", ListeID);
+            listInfos.Add("id", student.ID);
+            listInfos.Add("lastname", student.LastName);
+            listInfos.Add("firstname", student.FirstMidName);
+            listInfos.Add("enrollmentDate", student.EnrollmentDate.Date.ToString());
+            listInfos.Add("enrollments", ListeID);
 
             foreach(var item in student.Enrollments)
             {
-                ListeID.Add("CourseId :" + item.CourseID);
+                ListeID.Add("CourseId" + item.CourseID);
             }
 
+            // A creuser: HttpResponseMessage (status 200: la requête s'est bien exécutée)
             return Ok(listInfos);
         }
 

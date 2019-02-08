@@ -199,6 +199,7 @@ namespace ContosoUniversity.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         public ActionResult RegisterStudent()
         {
             return View();
@@ -207,6 +208,7 @@ namespace ContosoUniversity.Controllers
         [HttpPost]
         public ActionResult RegisterStudent(Student student, HttpPostedFileBase upload)
         {
+            // Vérifier si le nom d'utilisateur est déjà utilisé et dans ce cas retourner un message d'erreur. 
             if (db.Students.Any(s => s.UserName == student.UserName))
             {
                 ViewBag.ErrorMessage = "That user name is already taken. Try another !";
@@ -215,26 +217,32 @@ namespace ContosoUniversity.Controllers
 
             if (ModelState.IsValid)
             {
-                if (upload != null && upload.ContentLength > 0)
+                // Si l'image est bien chargée et que sa taille est inférieure à 100 KB.
+                if (upload != null && upload.ContentLength > 0 && upload.ContentLength < 100*1000)
                 {
-                    var photo = new FilePath
-                    {
-                        FileName = System.IO.Path.GetFileName(upload.FileName),
-                        FileType = FileType.Photo
-                    };
+                    FilePath photo = new FilePath();
+                    photo.FileName = System.IO.Path.GetFileName(upload.FileName);
+                    photo.FileType = FileType.Photo;
+
+                    // Création d'une liste d'entité pour un étudiant.
                     student.FilePaths = new List<FilePath>();
                     student.FilePaths.Add(photo);
 
                     string path = Path.Combine(Server.MapPath("~/Images"), student.UserName + photo.FileName);
                     upload.SaveAs(path);
-                }
 
-                db.Students.Add(student);
-                db.SaveChanges();
-                ModelState.Clear();
-                ViewBag.Message = "Registration successful !";
+                    //Ajout d'une entité Student dans le jeu d'entité Students. 
+                    db.Students.Add(student);
+
+                    // Persistance de cet ajout dans la base de données.
+                    db.SaveChanges();
+
+                    ViewBag.Message = "Registration successful !";
+                    return View();
+                }
             }
 
+            ModelState.AddModelError("", " image is incorrect");
             return View();
         }
 

@@ -251,6 +251,7 @@ namespace ContosoUniversity.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         public ActionResult RegisterInstructor()
         {
             return View();
@@ -259,6 +260,7 @@ namespace ContosoUniversity.Controllers
         [HttpPost]
         public ActionResult RegisterInstructor(Instructor instructor, HttpPostedFileBase upload)
         {
+            // Vérifier si le nom d'utilisateur est déjà utilisé et dans ce cas retourner un message d'erreur. 
             if (db.Instructors.Any(s => s.UserName == instructor.UserName))
             {
                 ViewBag.ErrorMessage = "That user name is already taken. Try another !";
@@ -267,13 +269,14 @@ namespace ContosoUniversity.Controllers
 
             if (ModelState.IsValid)
             {
-                if (upload != null && upload.ContentLength > 0)
+                if (upload != null)
                 {
                     var photo = new FilePath
                     {
                         FileName = System.IO.Path.GetFileName(upload.FileName),
                         FileType = FileType.Photo
                     };
+
                     instructor.FilePaths = new List<FilePath>();
                     instructor.FilePaths.Add(photo);
 
@@ -281,9 +284,12 @@ namespace ContosoUniversity.Controllers
                     upload.SaveAs(path);
                 }
 
+                //Ajout d'une entité dans le jeu d'entité Instructors. 
                 db.Instructors.Add(instructor);
+
+                // Persistance de cet ajout dans la base de données.
                 db.SaveChanges();
-                ModelState.Clear();
+
                 ViewBag.Message = "Registration successful !";
             }
 

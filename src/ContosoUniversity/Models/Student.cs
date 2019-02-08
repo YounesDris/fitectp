@@ -7,6 +7,7 @@ namespace ContosoUniversity.Models
 {
     public class Student : Person
     {
+        [Required(ErrorMessage = "This field is required")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Enrollment Date")]

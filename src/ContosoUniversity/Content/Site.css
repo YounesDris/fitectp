@@ -28,12 +28,12 @@ textarea {
     margin-left: 8px;
 }
 
-#SignIn {
+#SignIn, #SignOut {
     margin-top: 8px;
     margin-left: 8px;  
 }
 
-#SignIn a {
+#SignIn a, #SignOut a {
     color: black;
     text-decoration:none;
 }

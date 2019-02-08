@@ -1,0 +1,19 @@
+﻿@model ContosoUniversity.Models.Instructor
+@using ContosoUniversity.Models
+
+
+
+@if (Model.FilePaths.Any(f => f.FileType == FileType.Photo))
+{
+    <dd>
+        <img src="~/Images/@Model.UserName@(Model.FilePaths.First(f => f.FileType == FileType.Photo).FileName)" alt="" width="150" height="150" />
+    </dd>
+}
+
+<div>
+    <h4>@Html.DisplayFor(model => model.LastName) @Html.DisplayFor(model => model.FirstMidName)</h4>
+
+    <p>@Html.DisplayNameFor(model => model.HireDate): @Html.DisplayFor(model => model.HireDate)</p>
+    <hr />
+    <h4>Agenda</h4>
+</div>
