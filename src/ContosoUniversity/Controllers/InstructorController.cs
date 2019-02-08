@@ -10,6 +10,7 @@ using ContosoUniversity.DAL;
 using ContosoUniversity.Models;
 using ContosoUniversity.ViewModels;
 using System.Data.Entity.Infrastructure;
+using System.IO;
 
 namespace ContosoUniversity.Controllers
 {
@@ -210,8 +211,6 @@ namespace ContosoUniversity.Controllers
             }
         }
 
-
-
         // GET: Instructor/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -258,7 +257,7 @@ namespace ContosoUniversity.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegisterInstructor(Instructor instructor)
+        public ActionResult RegisterInstructor(Instructor instructor, HttpPostedFileBase upload)
         {
             if (db.Instructors.Any(s => s.UserName == instructor.UserName))
             {
@@ -268,6 +267,20 @@ namespace ContosoUniversity.Controllers
 
             if (ModelState.IsValid)
             {
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    var photo = new FilePath
+                    {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = FileType.Photo
+                    };
+                    instructor.FilePaths = new List<FilePath>();
+                    instructor.FilePaths.Add(photo);
+
+                    string path = Path.Combine(Server.MapPath("~/Images"), instructor.UserName + photo.FileName);
+                    upload.SaveAs(path);
+                }
+
                 db.Instructors.Add(instructor);
                 db.SaveChanges();
                 ModelState.Clear();
