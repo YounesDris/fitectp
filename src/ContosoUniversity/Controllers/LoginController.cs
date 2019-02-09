@@ -24,7 +24,7 @@ namespace ContosoUniversity.Controllers
         {
             if(ModelState.IsValid)
             {
-                // L'étudiant a un compte et ses informations d'authentification sont justes alors cet etudiant est stocké dans une variable.
+                // L'étudiant a un compte et ses informations d'authentification sont justes alors cet etudiant est stocké dans une variable de type Person.
                 Person user = db.Students.SingleOrDefault(u => u.UserName == person.UserName && u.Password == person.Password);
 
                // Création de deux sessions et redirection vers sa page de profil si un étudiant s'est identifié sans problèmes.
@@ -79,14 +79,19 @@ namespace ContosoUniversity.Controllers
         public ActionResult SessionStudent(int? id)
         {
             // Pour accéder à la vue liée au contrôleur SessionStudent, l'utilisateur doit s'authentifier préalablement donc l'ID se retrouve donc dans la route. 
-            // Question: Quel est l'utilité de cette condition ? (ReviewCode)
-
+            // Question: Quelle est l'utilité de cette condition ? (ReviewCode)
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             Student user = db.Students.FirstOrDefault(p => p.ID == id);
+
+            if (user == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             return View(user);
         }
 
@@ -95,7 +100,7 @@ namespace ContosoUniversity.Controllers
         public ActionResult SessionInstructor(int? id)
         {
             // Pour accéder à la vue liée au contrôleur SessionInstructor, l'utilisateur doit s'authentifier préalablement donc l'ID se retrouve donc dans la route. 
-            // Question: Quel est l'utilité de cette condition ? (ReviewCode)
+            // Question: Quelle est l'utilité de cette condition ? (ReviewCode)
 
             if (id == null)
             {
@@ -103,6 +108,12 @@ namespace ContosoUniversity.Controllers
             }
 
             Instructor user = db.Instructors.FirstOrDefault(p => p.ID == id);
+
+            if (user == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             return View(user);
         }
 
