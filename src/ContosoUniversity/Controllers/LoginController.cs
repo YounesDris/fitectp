@@ -30,7 +30,6 @@ namespace ContosoUniversity.Controllers
                // Création de deux sessions et redirection vers sa page de profil si un étudiant s'est identifié sans problèmes.
                if (user != null)
                 {
-                    //
                     Session["ID"] = user.ID;
 
                     // Pour les filtres paramétrés
@@ -48,7 +47,6 @@ namespace ContosoUniversity.Controllers
                     // Création de deux sessions et redirection vers sa page de profil si un instructeur s'est identifié sans problèmes.
                     if (user != null)
                     {
-                        //
                         Session["ID"] = user.ID;
 
                         // Pour les filtres paramétrés

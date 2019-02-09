@@ -242,7 +242,7 @@ namespace ContosoUniversity.Controllers
                 }
             }
 
-            ModelState.AddModelError("", " image is incorrect");
+            ModelState.AddModelError("", "Your profile image is required or its weight is higher than 100KB");
             return View();
         }
 
